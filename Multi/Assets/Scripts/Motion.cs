@@ -19,7 +19,8 @@ namespace Com.MoonDevs.MoonWalkers
         public float forwardForce = 2000f;
         public float sidewaysForce = 500f;
         public float maxspeed = 2000f;
-        
+        public float turnSpeed = 50f;
+
         private float baseFOV;
         private float sprintFOVModifier = 1.5f;
         
@@ -60,7 +61,6 @@ namespace Com.MoonDevs.MoonWalkers
             {
                 rig.AddForce(Vector3.up * jumpForce);
             }
-
         }
 
         void FixedUpdate()
@@ -75,11 +75,18 @@ namespace Com.MoonDevs.MoonWalkers
             if (Input.GetKey("d"))
             {
                 rig.AddForce(sidewaysForce * Time.deltaTime, 0, 0);
+                //transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey("a"))
             {
                 rig.AddForce(-sidewaysForce * Time.deltaTime, 0, 0);
+                //transform.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey("s"))
+            {
+                rig.AddForce(0, 0, -(forwardForce / 2) * Time.deltaTime);
             }
 
             //Axles
